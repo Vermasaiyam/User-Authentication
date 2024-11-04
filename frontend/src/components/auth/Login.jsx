@@ -53,7 +53,7 @@ const Login = () => {
         <div className="auth_container">
           <div className="auth_header">
             <IoIosLogIn />
-            <p className="auth_heading">welcome back</p>
+            <p className="auth_heading">Welcome back</p>
             <p className="auth_title">login to continue</p>
           </div>
           <div className="auth_item">
