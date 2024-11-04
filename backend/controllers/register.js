@@ -2,7 +2,7 @@ import User from "../models/User.js"
 import bcrypt from "bcrypt"
 import joi from "joi"
 
-export const signup = async (req, res) => {
+export const register = async (req, res) => {
     try {
         const {error: validationError} = validateUser(req.body);
 
@@ -44,7 +44,7 @@ export const signup = async (req, res) => {
     }
 };
 
-module.exports = register;
+export default register;
 
 function validateUser(data){
     const userSchema = joi.object({
