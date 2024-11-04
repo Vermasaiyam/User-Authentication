@@ -4,7 +4,7 @@ import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import { IoIosLogIn } from "react-icons/io";
 import toast from "react-hot-toast";
-import apis from "../../utils/apis";
+// import apis from "../../utils/apis";
 import LoadingButton from "../ui/LoadingButton";
 
 const Login = () => {
@@ -24,22 +24,22 @@ const Login = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch(apis().loginUser, {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-        headers: { "Content-Type": "application/json" },
-      });
+      // const response = await fetch(apis().loginUser, {
+      //   method: "POST",
+      //   body: JSON.stringify({ email, password }),
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      const result = await response.json();
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
-      if (result?.status) {
-        toast.success(result?.message);
-        localStorage.setItem("accessToken", result?.token);
-        console.log(result)
-      }
+      // const result = await response.json();
+      // setLoading(false);
+      // if (!response.ok) {
+      //   throw new Error(result?.message);
+      // }
+      // if (result?.status) {
+      //   toast.success(result?.message);
+      //   localStorage.setItem("accessToken", result?.token);
+      //   console.log(result)
+      // }
     } catch (error) {
       toast.error(error.message);
     }

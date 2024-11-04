@@ -5,7 +5,7 @@ import BackToLogin from "../ui/BackToLogin";
 import { RxUpdate } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import apis from "../../utils/apis";
+// import apis from "../../utils/apis";
 import LoadingButton from "../ui/LoadingButton";
 
 const UpdatePassword = () => {
@@ -25,28 +25,28 @@ const UpdatePassword = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(apis().updatePassword, {
-        method: "POST",
-        body: JSON.stringify({
-          password,
-          confirmPassword,
-          token: localStorage.getItem("passToken"),
-        }),
-        headers: { "Content-Type": "application/json" },
-      });
+      // const response = await fetch(apis().updatePassword, {
+      //   method: "POST",
+      //   body: JSON.stringify({
+      //     password,
+      //     confirmPassword,
+      //     token: localStorage.getItem("passToken"),
+      //   }),
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      const result = await response.json();
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
+      // const result = await response.json();
+      // setLoading(false);
+      // if (!response.ok) {
+      //   throw new Error(result?.message);
+      // }
 
-      if (result?.status) {
-        toast.success(result?.message);
-        navigate("/login");
-        localStorage.removeItem("email");
-        localStorage.removeItem("passToken");
-      }
+      // if (result?.status) {
+      //   toast.success(result?.message);
+      //   navigate("/login");
+      //   localStorage.removeItem("email");
+      //   localStorage.removeItem("passToken");
+      // }
     } catch (error) {
       toast.error(error.message);
     }

@@ -5,9 +5,11 @@ import { FaFolderPlus } from "react-icons/fa";
 import Button from "../ui/Button";
 import BackToLogin from "../ui/BackToLogin";
 import { useNavigate } from "react-router-dom";
-import apis from "../../utils/apis";
+// import apis from "../../utils/apis";
 import toast from "react-hot-toast";
 import LoadingButton from "../ui/LoadingButton";
+import axios from "axios";
+
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -32,24 +34,22 @@ const Register = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(apis().registerUser, {
-        method: "POST",
-        body: JSON.stringify({ name, email, password }),
-        headers: { "Content-Type": "application/json" },
+      const res = await axios.post('http://localhost:5555/user/register', { name, email, password }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true,
       });
 
-      const result = await response.json();
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
-
-      if (result?.status) {
-        toast.success(result?.message);
+      if (res.data.success) {
         navigate("/login");
+        toast.success(res.data.message);
       }
+      setLoading(false);
+
     } catch (error) {
-      toast.error(error.message);
+      console.log(error);
+      toast.error(error.response.data.message);
     }
 
     // console.log(name, email, password);

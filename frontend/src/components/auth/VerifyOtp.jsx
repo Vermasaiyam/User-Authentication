@@ -6,7 +6,7 @@ import "../auth/auth.css";
 import Timer from "./Timer";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import apis from "../../utils/apis";
+// import apis from "../../utils/apis";
 import LoadingButton from "../ui/LoadingButton";
 const VerifyOtp = () => {
   const ref1 = useRef(null);
@@ -30,28 +30,28 @@ const VerifyOtp = () => {
   const otpArray = [setOtp1, setOtp2, setOtp3, setOtp4, setOtp5, setOtp6];
   const getTime = async () => {
     try {
-      const response = await fetch(apis().getOtpTime, {
-        method: "POST",
-        body: JSON.stringify({ token: localStorage.getItem("passToken") }),
-        headers: { "Content-Type": "application/json" },
-      });
+      // const response = await fetch(apis().getOtpTime, {
+      //   method: "POST",
+      //   body: JSON.stringify({ token: localStorage.getItem("passToken") }),
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      const result = await response.json();
+      // const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
+      // if (!response.ok) {
+      //   throw new Error(result?.message);
+      // }
 
-      if (result?.status) {
-        const remaningTime =
-          new Date(result?.sendTime).getTime() - new Date().getTime();
+      // if (result?.status) {
+      //   const remaningTime =
+      //     new Date(result?.sendTime).getTime() - new Date().getTime();
 
-        if (remaningTime > 0) {
-          setOtpTime(remaningTime);
-        } else {
-          setIsExpire(true);
-        }
-      }
+      //   if (remaningTime > 0) {
+      //     setOtpTime(remaningTime);
+      //   } else {
+      //     setIsExpire(true);
+      //   }
+      // }
     } catch (error) {
       toast.error(error.message);
     }
@@ -78,21 +78,21 @@ const VerifyOtp = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(apis().otpVerify, {
-        method: "POST",
-        body: JSON.stringify({ otp: finalOtp }),
-        headers: { "Content-Type": "application/json" },
-      });
+      // const response = await fetch(apis().otpVerify, {
+      //   method: "POST",
+      //   body: JSON.stringify({ otp: finalOtp }),
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      const result = await response.json();
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
-      if (result?.status) {
-        toast.success(result?.message);
-        navigate("/password/update");
-      }
+      // const result = await response.json();
+      // setLoading(false);
+      // if (!response.ok) {
+      //   throw new Error(result?.message);
+      // }
+      // if (result?.status) {
+      //   toast.success(result?.message);
+      //   navigate("/password/update");
+      // }
     } catch (error) {
       toast.error(error.message);
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Outlet, Navigate } from "react-router-dom";
-import apis from "../utils/apis";
+// import apis from "../utils/apis";
 const Super = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -10,22 +10,22 @@ const Super = () => {
     const getRouteAccess = async () => {
       try {
         setLoading(true);
-        const response = await fetch(apis().getAccess, {
-          method: "POST",
-          body: JSON.stringify({ token: localStorage.getItem("passToken") }),
-          headers: { "Content-Type": "application/json" },
-        });
+        // const response = await fetch(apis().getAccess, {
+        //   method: "POST",
+        //   body: JSON.stringify({ token: localStorage.getItem("passToken") }),
+        //   headers: { "Content-Type": "application/json" },
+        // });
 
-        const result = await response.json();
+        // const result = await response.json();
 
-        if (!response.ok) {
-          throw new Error(result?.message);
-        }
+        // if (!response.ok) {
+        //   throw new Error(result?.message);
+        // }
 
-        if (result?.status) {
-          setLoading(false);
-          setIsAuth(true);
-        }
+        // if (result?.status) {
+        //   setLoading(false);
+        //   setIsAuth(true);
+        // }
       } catch (error) {
         setLoading(false);
         toast.error(error.message);

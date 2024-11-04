@@ -5,7 +5,7 @@ import BackToLogin from "../ui/BackToLogin";
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import apis from "../../utils/apis";
+// import apis from "../../utils/apis";
 import LoadingButton from "../ui/LoadingButton";
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -20,24 +20,24 @@ const ForgetPassword = () => {
 
     try {
       setLoading(true);
-      const response = await fetch(apis().forgetPassword, {
-        method: "POST",
-        body: JSON.stringify({ email }),
-        headers: { "Content-Type": "application/json" },
-      });
+      // const response = await fetch(apis().forgetPassword, {
+      //   method: "POST",
+      //   body: JSON.stringify({ email }),
+      //   headers: { "Content-Type": "application/json" },
+      // });
 
-      const result = await response.json();
-      setLoading(false);
-      if (!response.ok) {
-        throw new Error(result?.message);
-      }
+      // const result = await response.json();
+      // setLoading(false);
+      // if (!response.ok) {
+      //   throw new Error(result?.message);
+      // }
 
-      if (result?.status) {
-        toast.success(result?.message);
-        localStorage.setItem("passToken", result?.token);
-        localStorage.setItem("email", email);
-        navigate("/otp/verify");
-      }
+      // if (result?.status) {
+      //   toast.success(result?.message);
+      //   localStorage.setItem("passToken", result?.token);
+      //   localStorage.setItem("email", email);
+      //   navigate("/otp/verify");
+      // }
     } catch (error) {
       toast.error(error.message);
     }
