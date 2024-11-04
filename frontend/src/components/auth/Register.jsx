@@ -15,15 +15,15 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const nameChnage = (event) => {
+  const nameChange = (event) => {
     setName(event.target.value);
   };
 
-  const emailChage = (event) => {
+  const emailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const passwordChnage = (event) => {
+  const passwordChange = (event) => {
     setPassword(event.target.value);
   };
 
@@ -67,7 +67,7 @@ const Register = () => {
           <div className="auth_item">
             <label>Name *</label>
             <Input
-              onChange={nameChnage}
+              onChange={nameChange}
               type="text"
               required
               placeholder="enter your name"
@@ -76,19 +76,19 @@ const Register = () => {
           <div className="auth_item">
             <label>Email *</label>
             <Input
-              onChange={emailChage}
+              onChange={emailChange}
               type="email"
               required
-              placeholder="enter your name"
+              placeholder="enter your email"
             />
           </div>
           <div className="auth_item">
             <label>Password *</label>
             <Input
-              onChange={passwordChnage}
+              onChange={passwordChange}
               type="password"
               required
-              placeholder="enter your name"
+              placeholder="enter your password"
             />
           </div>
 
