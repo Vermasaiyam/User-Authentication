@@ -64,7 +64,7 @@ const VerifyOtp = () => {
     getTime();
   }, []);
 
-  const inputChnage = (event, location) => {
+  const inputChange = (event, location) => {
     if (location < 5 && event.target.value) {
       inputRef[location + 1].current.focus();
     }
@@ -142,7 +142,7 @@ const VerifyOtp = () => {
                   <input
                     required
                     key={index}
-                    onChange={(event) => inputChnage(event, index)}
+                    onChange={(event) => inputChange(event, index)}
                     ref={item}
                     onInput={(event) => {
                       if (event.target.value.length > 1) {
