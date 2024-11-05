@@ -50,7 +50,9 @@ const Register = () => {
     } catch (error) {
       console.log(error);
       toast.error(error.response.data.message);
+      setLoading(false);
     }
+    setLoading(false);
 
     // console.log(name, email, password);
   };

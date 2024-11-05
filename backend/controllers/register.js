@@ -4,49 +4,38 @@ import joi from "joi"
 
 export const register = async (req, res) => {
     try {
-        const {error: validationError} = validateUser(req.body);
-
-        if (validationError){
-            const error = new Error(validationError.details[0].message);
-            return res.status(400).json({
+        const { username, email, password } = req.body;
+        if (!username || !email || !password) {
+            return res.status(401).json({
+                message: "Empty fields!!!",
                 success: false,
-                message: error,
-            })
+            });
         }
-
-        const { name, email, password } = req.body;
-
-        let user = await User.findOne({ email });
+        const user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({
+            return res.status(401).json({
+                message: "User already exists.",
                 success: false,
-                message: "User Already Exists."
-            })
-        }
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        user = new User({
-            name,
+            });
+        };
+        const hashedPassword = await bcrypt.hash(password, 7);
+        await User.create({
+            username,
             email,
             password: hashedPassword
-        })
-
-        const savedUser = await user.save();
-        
+        });
         return res.status(201).json({
+            message: "Account created successfully.",
             success: true,
-            message: "Account Created Successfully.",
-            user: savedUser
         });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "Internal Server Error" });
     }
-};
+}
 
 export default register;
 
-function validateUser(data){
+function validateUser(data) {
     const userSchema = joi.object({
         name: joi.string().min(2).required(),
         email: joi.string().email().required(),
